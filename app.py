@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -9,10 +10,10 @@ from resources.store import Store, StoreList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 # 在正式生產環境中，secret_key不應該存在於source code中，
 # 而應該使用其他方式帶入，考慮環境變數或是其他可能
-app.secret_key = 'hughe'
+app.secret_key = os.environ.get('SECRET_KEY', 'hughe')
 api = Api(app)
 
 # JWT會創造一個新的端點/auth，當用戶發送username及password到/auth時，

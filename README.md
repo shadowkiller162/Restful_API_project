@@ -13,3 +13,5 @@ A simple store REST API, for pratice and learn.
 
 ## Implementation
 This project is implemented using Flask, and is a RESTful API for a store.
+
+Deployed on Heroku.
